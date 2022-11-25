@@ -4,9 +4,12 @@ library('bookdown')
 library('knitr')
 library("magrittr")
 
+require("here")
 require(usethis)
 require(renv)
 
+require(rticles)
+require(tinytex)
 # my custom pkg
 require(xmerit)
 
@@ -36,7 +39,7 @@ require(xmerit)
 #require("jpeg")
 #require("glue")
 #require("foreign")
-#require("here")
+
 
 
 
