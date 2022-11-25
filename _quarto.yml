@@ -1,0 +1,10 @@
+project:
+  title: "wp-pannel-test"
+  output-dir: public
+
+execute: 
+  echo: false
+
+format: 
+  html:
+    page-layout: article

@@ -10,6 +10,8 @@ require(renv)
 
 require(rticles)
 require(tinytex)
+
+require(quarto)
 # my custom pkg
 require(xmerit)
 
