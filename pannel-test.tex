@@ -176,7 +176,7 @@ and\\Âuthóř 2\\
 
 \newpage
 \spacingset{1.9} % DON'T change the spacing!
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, enhanced, frame hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, frame hidden, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable]}{\end{tcolorbox}}\fi
 
 \hypertarget{sec:2}{%
 \section{Pesaran method}\label{sec:2}}
@@ -227,13 +227,128 @@ independently of Idiosyncratic Errors for all \(i,t\) and \(t'\).
 Combining Equation~\ref{eq-dgp} and Equation~\ref{eq-uit} it follows
 that
 
-\begin{equation}\protect\hypertarget{eq-full}{}{
+\begin{equation}\protect\hypertarget{eq-yit-delta}{}{
 \begin{aligned}
 \Delta y_{i t}=\beta_i\left(y_{i, t-1}-\boldsymbol{\alpha}_{i y}^{\prime} \mathbf{d}_{t-1}\right)+\boldsymbol{\alpha}_{i y}^{\prime} \Delta \mathbf{d}_t+\boldsymbol{\gamma}_{i y}^{\prime} \mathbf{f}_t+\varepsilon_{i y t}
 \end{aligned}
-}\label{eq-full}\end{equation}
+}\label{eq-yit-delta}\end{equation}
 
-Reference
+The hypothesis that all observed series,\(\Delta y_{it}\), have unit
+roots and are not cross unit cointegrated can be expressed as
+
+\begin{equation}\protect\hypertarget{eq-h0}{}{
+H_0: \beta_i=0 \text { for all } i 
+}\label{eq-h0}\end{equation}
+
+against the alternative
+
+\begin{equation}\protect\hypertarget{eq-h1}{}{
+\begin{aligned}
+H_1: \beta_i&<0 \text { for } i=1,2, \ldots, N_1 \\
+\quad \beta_i&=0 \text { for } i=N_1+1, N_1+2, . ., N
+\end{aligned}
+}\label{eq-h1}\end{equation}
+
+Under the null hypothesis, Equation~\ref{eq-yit-delta} can be solved for
+to yield
+
+\begin{equation}\protect\hypertarget{eq-yit}{}{
+\begin{aligned}
+&y_{i t}=y_{i 0}+\boldsymbol{\alpha}_{i y}^{\prime} \mathbf{d}_t+\boldsymbol{\gamma}_{i y}^{\prime} \mathbf{s}_{f t}+s_{i y t}, \\
+&i=1,2, \ldots, N ; t=1,2, \ldots, T,
+\end{aligned}
+}\label{eq-yit}\end{equation}
+
+where
+
+\[
+\mathbf{s}_{f t}=\mathbf{f}_1+\mathbf{f}_2+\cdots+\mathbf{f}_t \text {, and } 
+s_{i y t}=\varepsilon_{i y 1}+\varepsilon_{i y 2}+\cdots+\varepsilon_{i y t}
+\]
+
+Suppose the \(k\times1\) vector of additional regressors follow the
+general linear process
+
+\begin{equation}\protect\hypertarget{eq-xit-delt}{}{
+\begin{aligned}
+\mathbf{x}_{i t}&=\mathbf{x}_{i 0}+\mathbf{A}_{i x} \mathbf{d}_t+\boldsymbol{\Gamma}_{i x} \mathbf{s}_{f t}+\mathbf{s}_{i x t}, \\
+i&=1,2, \ldots, N ; t=1,2, \ldots, T,
+\end{aligned}
+}\label{eq-xit-delt}\end{equation}
+
+Solving for \(\mathbf{x}_{i t}\)we have
+
+\begin{equation}\protect\hypertarget{eq-xit}{}{
+\begin{aligned}
+\mathbf{x}_{i t} &=\mathbf{x}_{i 0}+\mathbf{A}_{i x} \mathbf{d}_t+\boldsymbol{\Gamma}_{i x} \mathbf{s}_{f t}+\mathbf{s}_{i x t}, \\
+i &=1,2, \ldots, N ; t=1,2, \ldots, T,
+\end{aligned}
+}\label{eq-xit}\end{equation}
+
+Combining Equation~\ref{eq-yit}, Equation~\ref{eq-xit} we obtain
+
+\begin{equation}\protect\hypertarget{eq-zit}{}{
+\mathbf{z}_{i t}=\mathbf{z}_{i 0}+\Gamma_i \mathbf{s}_{f t}+\mathbf{A}_i \mathbf{d}_t+\mathbf{s}_{i t}
+}\label{eq-zit}\end{equation}
+
+where
+\(\mathbf{z}_{i t}=\left(y_{i t}, \mathbf{x}_{i t}^{\prime}\right)^{\prime}, \boldsymbol{\Gamma}_i=\left(\boldsymbol{\gamma}_{i y}, \boldsymbol{\Gamma}_{i x}^{\prime}\right)^{\prime}, \mathbf{A}_i=\left(\boldsymbol{\alpha}_{i y}, \mathbf{A}_{i x}^{\prime}\right)^{\prime}\),
+and
+\(\mathbf{s}_{i t}=\left(s_{i y t}, \mathbf{s}_{i x t}^{\prime}\right)^{\prime}\).
+
+Averaging Equation~\ref{eq-zit} across \(i\) we obtain
+
+\begin{equation}\protect\hypertarget{eq-zt-avr}{}{
+\overline{\mathbf{z}}_t=\overline{\mathbf{z}}_0+\overline{\boldsymbol{\Gamma}}_{f t}+\overline{\mathbf{A}} \mathbf{d}_t+\overline{\mathbf{s}}_t
+}\label{eq-zt-avr}\end{equation}
+
+where
+\(\overline{\mathbf{z}}_t=N^{-1} \sum_{i=1}^N \mathbf{z}_{i t}, \overline{\mathbf{A}}=N^{-1} \sum_{i=1}^N \mathbf{A}_i\),
+and \(\overline{\mathbf{s}}_t=N^{-1}\sum_{i=1}^N \mathbf{s}_{i t}\).
+
+Writing Equation~\ref{eq-yit-delta}, Equation~\ref{eq-zit} and
+Equation~\ref{eq-zt-avr} in matrix notation, under the null for each
+\(i\) we have
+
+\begin{equation}\protect\hypertarget{eq-yi-mtrx}{}{
+\begin{aligned}
+&\Delta \mathbf{y}_i=\mathbf{F} \boldsymbol{\gamma}_{i y}+\Delta \mathbf{D} \boldsymbol{\alpha}_{i y}+\boldsymbol{\varepsilon}_{i y} 
+\end{aligned}
+}\label{eq-yi-mtrx}\end{equation}
+
+\begin{equation}\protect\hypertarget{eq-zi-mtrx}{}{
+\begin{aligned}
+&\Delta \mathbf{Z}_i=\mathbf{F} \boldsymbol{\Gamma}_i^{\prime}+\Delta \mathbf{D} \mathbf{A}_i^{\prime}+\mathbf{E}_i 
+\end{aligned}
+}\label{eq-zi-mtrx}\end{equation}
+\begin{equation}\protect\hypertarget{eq-zavr-mtrx}{}{
+\begin{aligned}
+&\Delta \overline{\mathbf{Z}}=\mathbf{F}^{\prime}+\Delta \mathbf{D} \overline{\mathbf{A}}^{\prime}+\overline{\mathbf{E}}
+\end{aligned}
+}\label{eq-zavr-mtrx}\end{equation}
+
+In view of the above we shall base our test of the panel unit root
+hypothesis on the -ratio of the Ordinary Least Squares (OLS) estimator
+of in the following cross-sectionally augmented regression
+
+\begin{equation}\protect\hypertarget{eq-reg-cs}{}{
+\Delta y_{i t}=b_i y_{i t-1}+\mathbf{c}_i^{\prime} \overline{\mathbf{z}}_{t-1}+\mathbf{h}_i^{\prime} \Delta \overline{\mathbf{z}}_t+\mathbf{g}_i^{\prime} \mathbf{d}_t+\epsilon_{i t}
+}\label{eq-reg-cs}\end{equation}
+
+The \(t\)-ratio of \(\hat{b}_i\) is given by
+
+\[
+\begin{aligned}
+t_i(N, T) &=\frac{\Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}}{\hat{\sigma}_i\left(\mathbf{y}_{i,-1}^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}\right)^{1 / 2}} \\
+&=\frac{\sqrt{T-2 k-5} \Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}}{\left(\Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}}_i \Delta \mathbf{y}_i\right)^{1 / 2}\left(\mathbf{y}_{i,-1}^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}\right)^{1 / 2}}
+\end{aligned}
+\]
+
+The panel unit root test can now be based on the average of the t-ratios
+
+\begin{equation}\protect\hypertarget{eq-cips-nt}{}{
+C I P S_{N T}=N^{-1} \sum_{i=1}^N t_i(N, T)
+}\label{eq-cips-nt}\end{equation}
 
 
   \bibliography{bib/method-unit-root-test.bib}

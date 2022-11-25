@@ -67,6 +67,112 @@ $$
 \begin{aligned}
 \Delta y_{i t}=\beta_i\left(y_{i, t-1}-\boldsymbol{\alpha}_{i y}^{\prime} \mathbf{d}_{t-1}\right)+\boldsymbol{\alpha}_{i y}^{\prime} \Delta \mathbf{d}_t+\boldsymbol{\gamma}_{i y}^{\prime} \mathbf{f}_t+\varepsilon_{i y t}
 \end{aligned}
-$$ {#eq-full}
+$$ {#eq-yit-delta}
 
-# Reference {#reference}
+The hypothesis that all observed series,$\Delta y_{it}$, have unit roots and are not cross unit cointegrated can be expressed as 
+
+$$
+H_0: \beta_i=0 \text { for all } i 
+$$ {#eq-h0}
+
+against the alternative 
+
+$$
+\begin{aligned}
+H_1: \beta_i&<0 \text { for } i=1,2, \ldots, N_1 \\
+\quad \beta_i&=0 \text { for } i=N_1+1, N_1+2, . ., N
+\end{aligned}
+$$ {#eq-h1}
+
+Under the null hypothesis, @eq-yit-delta can be solved for to yield
+
+$$
+\begin{aligned}
+&y_{i t}=y_{i 0}+\boldsymbol{\alpha}_{i y}^{\prime} \mathbf{d}_t+\boldsymbol{\gamma}_{i y}^{\prime} \mathbf{s}_{f t}+s_{i y t}, \\
+&i=1,2, \ldots, N ; t=1,2, \ldots, T,
+\end{aligned}
+$$ {#eq-yit}
+
+where
+
+$$
+\mathbf{s}_{f t}=\mathbf{f}_1+\mathbf{f}_2+\cdots+\mathbf{f}_t \text {, and } 
+s_{i y t}=\varepsilon_{i y 1}+\varepsilon_{i y 2}+\cdots+\varepsilon_{i y t}
+$$
+
+Suppose the $k\times1$ vector of additional regressors follow the general linear process 
+
+$$
+\begin{aligned}
+\mathbf{x}_{i t}&=\mathbf{x}_{i 0}+\mathbf{A}_{i x} \mathbf{d}_t+\boldsymbol{\Gamma}_{i x} \mathbf{s}_{f t}+\mathbf{s}_{i x t}, \\
+i&=1,2, \ldots, N ; t=1,2, \ldots, T,
+\end{aligned}
+$$ {#eq-xit-delt}
+
+Solving for $\mathbf{x}_{i t}$we have 
+
+$$
+\begin{aligned}
+\mathbf{x}_{i t} &=\mathbf{x}_{i 0}+\mathbf{A}_{i x} \mathbf{d}_t+\boldsymbol{\Gamma}_{i x} \mathbf{s}_{f t}+\mathbf{s}_{i x t}, \\
+i &=1,2, \ldots, N ; t=1,2, \ldots, T,
+\end{aligned}
+$$ {#eq-xit}
+
+Combining @eq-yit, @eq-xit we obtain 
+
+$$
+\mathbf{z}_{i t}=\mathbf{z}_{i 0}+\Gamma_i \mathbf{s}_{f t}+\mathbf{A}_i \mathbf{d}_t+\mathbf{s}_{i t}
+$$ {#eq-zit}
+
+where 
+$\mathbf{z}_{i t}=\left(y_{i t}, \mathbf{x}_{i t}^{\prime}\right)^{\prime}, \boldsymbol{\Gamma}_i=\left(\boldsymbol{\gamma}_{i y}, \boldsymbol{\Gamma}_{i x}^{\prime}\right)^{\prime}, \mathbf{A}_i=\left(\boldsymbol{\alpha}_{i y}, \mathbf{A}_{i x}^{\prime}\right)^{\prime}$, and $\mathbf{s}_{i t}=\left(s_{i y t}, \mathbf{s}_{i x t}^{\prime}\right)^{\prime}$.
+
+Averaging @eq-zit across $i$ we obtain
+
+$$
+\overline{\mathbf{z}}_t=\overline{\mathbf{z}}_0+\overline{\boldsymbol{\Gamma}}_{f t}+\overline{\mathbf{A}} \mathbf{d}_t+\overline{\mathbf{s}}_t
+$$ {#eq-zt-avr}
+
+where $\overline{\mathbf{z}}_t=N^{-1} \sum_{i=1}^N \mathbf{z}_{i t}, \overline{\mathbf{A}}=N^{-1} \sum_{i=1}^N \mathbf{A}_i$, and $\overline{\mathbf{s}}_t=N^{-1}\sum_{i=1}^N \mathbf{s}_{i t}$. 
+
+Writing @eq-yit-delta, @eq-zit and @eq-zt-avr in matrix notation, under the null for each $i$ we have
+
+$$
+\begin{aligned}
+&\Delta \mathbf{y}_i=\mathbf{F} \boldsymbol{\gamma}_{i y}+\Delta \mathbf{D} \boldsymbol{\alpha}_{i y}+\boldsymbol{\varepsilon}_{i y} 
+\end{aligned}
+$$ {#eq-yi-mtrx}
+
+
+$$
+\begin{aligned}
+&\Delta \mathbf{Z}_i=\mathbf{F} \boldsymbol{\Gamma}_i^{\prime}+\Delta \mathbf{D} \mathbf{A}_i^{\prime}+\mathbf{E}_i 
+\end{aligned}
+$$ {#eq-zi-mtrx}
+$$
+\begin{aligned}
+&\Delta \overline{\mathbf{Z}}=\mathbf{F}^{\prime}+\Delta \mathbf{D} \overline{\mathbf{A}}^{\prime}+\overline{\mathbf{E}}
+\end{aligned}
+$$ {#eq-zavr-mtrx}
+
+
+In view of the above we shall base our test of the panel unit root hypothesis on the -ratio of the Ordinary Least Squares (OLS) estimator of in the following cross-sectionally augmented regression 
+
+$$
+\Delta y_{i t}=b_i y_{i t-1}+\mathbf{c}_i^{\prime} \overline{\mathbf{z}}_{t-1}+\mathbf{h}_i^{\prime} \Delta \overline{\mathbf{z}}_t+\mathbf{g}_i^{\prime} \mathbf{d}_t+\epsilon_{i t}
+$$ {#eq-reg-cs}
+
+The $t$-ratio of $\hat{b}_i$ is given by
+
+$$
+\begin{aligned}
+t_i(N, T) &=\frac{\Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}}{\hat{\sigma}_i\left(\mathbf{y}_{i,-1}^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}\right)^{1 / 2}} \\
+&=\frac{\sqrt{T-2 k-5} \Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}}{\left(\Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}}_i \Delta \mathbf{y}_i\right)^{1 / 2}\left(\mathbf{y}_{i,-1}^{\prime} \overline{\mathbf{M}} \mathbf{y}_{i,-1}\right)^{1 / 2}}
+\end{aligned}
+$$
+
+The panel unit root test can now be based on the average of the t-ratios
+
+$$
+C I P S_{N T}=N^{-1} \sum_{i=1}^N t_i(N, T)
+$$ {#eq-cips-nt}
