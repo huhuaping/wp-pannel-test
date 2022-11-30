@@ -31,11 +31,9 @@ bibliography: bib/method-unit-root-test.bib
 # Pannel test method {#sec:1}
 
 
-## Pesaran method {#sec:2}
-
 [@pesaran2013] extends Pesaran’s **CIP** test to the case of a multifactor error structure. This is a non-trivial yet important extension which is much more broadly applicable. It has also the advantage of being intuitive and simple to implement. Following Bai and Ng (2010) we also consider a panel unit root test based on simple averages of cross-sectionally augmented Sargan–Bhargava type statistics, which we denote by **CSB**. The presence of multiple unobserved factors poses a number of additional challenges.
 
-### Panel data model and the CIPs test 
+## Panel data model and the CIPs test 
 
 Let $\Delta y_{it}$ be the observation on the $i$th cross section unit at time $t$, and suppose that it is generated as 
 
@@ -176,3 +174,96 @@ The panel unit root test can now be based on the average of the t-ratios
 $$
 C I P S_{N T}=N^{-1} \sum_{i=1}^N t_i(N, T)
 $$ {#eq-cips-nt}
+
+## cross-sectionally augmented Sargan–Bhargava Test(CSB)
+
+The cross-sectional augmentation approach can also be exploited in the case of other unit root tests, such as the test proposed by Sargan and Bhargava (1983). In the single time series case, the Sargan-Bhargava statistic was modified by Stock (1999) to allow for serial correlation. This test has also been recently adopted by Bai and $\mathrm{Ng}$ (2010) in the panel context with good effects. Recall that the data generating process for $y_{i t}$ under the null is given by
+
+$$
+\Delta y_{i t}=\boldsymbol{\alpha}_{i y}^{\prime} \Delta \mathbf{d}_t+\boldsymbol{\gamma}_{i y}^{\prime} \mathbf{f}_t+\varepsilon_{i y t} .
+$$
+
+For each $i$, the cross-sectionally augmented Sargan-Bhargava statistic, is given by
+
+$$
+\operatorname{CSB}_i(N, T)=T^{-2} \sum_{t=1}^T \widehat{u}_{i t}^2 / \hat{\sigma}_i^2,
+$$
+
+where
+
+$$
+\widehat{u}_{i t}=\sum_{j=1}^t \hat{\varepsilon}_{i j}, \quad \text { and } \quad \hat{\sigma}_i^2=\sum_{t=1}^T \hat{\varepsilon}_{i t}^2 /[T-(k+1)]
+$$
+
+and $\hat{\varepsilon}_{i t}$ are the OLS residuals from the regressions of $\Delta y_{i t}$ on $\Delta \overline{\mathbf{z}}_t$, in the case of models with an intercept only. If the underlying series are trended, $\hat{\varepsilon}_{i t}$ must be calculated from a regression of $\Delta y_{i t}$ on an intercept and $\Delta \overline{\mathbf{z}}_t$, with $\hat{\sigma}_i^2$ computed as $\hat{\sigma}_i^2=$ $\sum_{t=1}^T \hat{\varepsilon}_{i t}^2 /[T-(k+2)]$. The use of cross-sectional augmentation as a way of dealing with the unobserved factors is justified using (17), which renders $\hat{\varepsilon}_{it}$ free of the nuisance parameters (namely the factor loadings). It is now easy to prove that for each $i$, the $\operatorname{CSB}_i(N, T)$ statistic converges to a functional of Brownian motions, which is independent of the factors as well as their loadings. The CSB test is then based on the cross-sectional average of the $\operatorname{CSB}_i(N, T)$ statistics, given by
+
+$$
+\operatorname{CSB}_{N T}=N^{-1} \sum_{i=1}^N \operatorname{CSB}_i(N, T)
+$$
+
+## The case of residual serial correlation
+
+We relax Assumption 1, and consider the implications of residual serial correlation for our proposed tests. In error factor models, residual serial correlation can be modelled in a number of different ways, directly via the idiosyncratic components, through the factor(s), or a mixture of the two. We focus on the serial correlation in the idiosyncratic errors and model the residual serial correlation as
+
+$$
+\begin{aligned}
+&\zeta_{iyt }=\theta_i \zeta_{iy, t-1}+\eta_{iyt}, \quad\left|\theta_i\right|<1, \\
+&\text { for } i=1,2, \ldots, N ; \quad t=1,2, \ldots, T
+\end{aligned}
+$$ {#eq-res-zeta-iyt}
+
+where $\zeta_{i y t}$ is the idiosyncratic component of $u_{i t}=\gamma_{i y}^{\prime} \mathbf{f}_t+\zeta_{i y t}$, and $\eta_{\text {iyt }}$ is independently distributed across both $i$ and $t$, with zero means and variances, $0<\sigma_{i \eta}^2 \leq K$.
+
+To keep the exposition simple we confine our analysis to the first order stationary processes, though the analysis readily extends to higher order processes. Under @eq-res-zeta-iyt we have
+
+$$
+\Delta y_{i t}=\beta_i\left(y_{i, t-1}-\boldsymbol{\alpha}_{i y}^{\prime} \mathbf{d}_{t-1}\right)+\boldsymbol{\alpha}_{i y}^{\prime} \Delta \mathbf{d}_t+\gamma_{i y}^{\prime} \mathbf{f}_t+\zeta_{i y t}\left(\theta_i\right),
+$$ {#eq-res-delta-yit}
+
+where $\zeta_{\text {iyt }}\left(\theta_i\right)=\left(1-\theta_i L\right)^{-1} \eta_{\text {iyt }}$. We also assume the coefficients of the autoregressive process to be homogeneous across $i$, although this could be relaxed at the cost of more complex mathematical details. Under the null that $\beta_i=0$, with $\theta_i=\theta$ and $\mathbf{d}_t=(1,0)^{\prime}$, @eq-res-delta-yit reduces to
+
+$$
+\Delta y_{i t}=\gamma_{i y}^{\prime} \mathbf{f}_t+\zeta_{i y t}(\theta) \text {, }
+$$ {#eq-res-yit-reduce}
+
+and upon using @eq-res-zeta-iyt under the null hypothesis we have
+
+$$
+\Delta y_{i t}=\theta \Delta y_{i, t-1}+\gamma_{i y}^{\prime}\left(\mathbf{f}_t-\theta \mathbf{f}_{t-1}\right)+\eta_{i y t} .
+$$ {#eq-res-yit-null}
+
+The individual CADF regressions can be written as
+
+$$
+\Delta \mathbf{y}_i=b_i \mathbf{y}_{i,-1}+\overline{\mathbf{W}}_{i 1} \mathbf{h}_i+\epsilon_i, \quad \text { for } i=1,2, \ldots, N \text {, }
+$$ {#eq-res-yit-ind}
+
+where $\overline{\mathbf{W}}_{i 1}=\left(\Delta \mathbf{y}_{i,-1}, \Delta \overline{\mathbf{Z}}, \Delta \overline{\mathbf{Z}}_{-1}, \boldsymbol{\tau}_T, \overline{\mathbf{Z}}_{-1}\right)$, which is a $T \times(3 k+5)$ matrix. The $t$-ratio of $\hat{b}_i$ in regression @eq-res-yit-ind is given by
+
+$$
+\begin{aligned}
+t_i(N, T) &=\frac{\Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}}_{i 1} \mathbf{y}_{i,-1}}{\hat{\sigma}_i\left(\mathbf{y}_{i,-1}^{\prime} \overline{\mathbf{M}}_{i 1} \mathbf{y}_{i,-1}\right)^{1 / 2}} \\
+&=\frac{\sqrt{T-(3 k+6)} \Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}}_{i 1} \mathbf{y}_{i,-1}}{\left(\Delta \mathbf{y}_i^{\prime} \overline{\mathbf{M}}_{i 1, p} \Delta \mathbf{y}_i\right)^{1 / 2}\left(\mathbf{y}_{i,-1}^{\prime} \overline{\mathbf{M}}_{i 1} \mathbf{y}_{i,-1}\right)^{1 / 2}}
+\end{aligned}
+$$ {#eq-res-ti-ratio}
+
+
+# Empirical applications
+
+## real intrest rates
+
+These results suggest that for a significant number of countries the
+Fisher parity holds.This is inline with recent findings reported in 
+Westerlund(2008) using panel cointegration tests.
+
+## real equity prices
+
+Overall, the 
+test results are inline with the generally accepted view that real equity prices approximately follow random walks with a drift.
+
+## HousePricesUS dataset
+
+
+[@croissant2019] chapter 8 section 8.4.3
+
+The unit root hypothesis is rejected for both the residuals of the **CCEMG** and the **CCEP** models. The conclusion is that both models represent cointegrating regressions.
